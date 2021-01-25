@@ -36,6 +36,7 @@ public class UserController {
     @PreAuthorize("hasAnyRole('Customer', 'Branch Manager')")
 	@RequestMapping(value="user/{id}",method=RequestMethod.GET)
 	public UserDto getUser(@PathVariable long id){
+		System.out.println("Fetching User detail...");
 		return userService.getUser(id);
 	}
 	
