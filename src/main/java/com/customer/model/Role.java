@@ -11,12 +11,12 @@ import javax.persistence.Id;
 public class Role {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="roleId")
 	private Long id;
-	@Column(unique=true , updatable=false,insertable=false,nullable=false)
+	@Column(unique=true , nullable=false)
 	private String roleName;
-	@Column(unique=true, updatable=false,insertable=false,nullable=false)
+	@Column(unique=true, nullable=false)
 	private String roleCode;
 	
 	
@@ -24,7 +24,7 @@ public class Role {
 		
 	}
 	
-	public Role(Long id, String roleName, String roleCode) {
+	public Role(long id, String roleName, String roleCode) {
 		super();
 		this.id = id;
 		this.roleName = roleName;

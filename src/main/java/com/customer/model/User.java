@@ -42,7 +42,7 @@ public class User {
 
 	}
 
-	public User(long id, String userName, Date dateOfBirth, char gender, String phoneNumber,String password) {
+	public User(long id, String userName, Date dateOfBirth, char gender, String phoneNumber,String password, Role role) {
 		super();
 		this.id = id;
 		this.userName = userName;
