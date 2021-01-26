@@ -1,5 +1,6 @@
 package com.custom.exception;
 
+
 public class UserNotFoundException extends RuntimeException{
 	
 	private long id;

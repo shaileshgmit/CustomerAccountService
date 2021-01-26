@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.customer.model.Role;
 import com.customer.model.User;
 import com.customer.services.RoleService;
-import com.customer.services.UserService;
+import com.customer.services.RoleServiceImpl;
+import com.customer.services.UserServiceImpl;
 
 @RestController
 public class RoleController {
@@ -28,32 +29,32 @@ public class RoleController {
     private static final Logger logger = LoggerFactory.getLogger(RoleController.class);
     
 	@RequestMapping(value="role",method=RequestMethod.GET)
-	public List<Role> getAllRoles(){
+	public ResponseEntity<List<Role>> getAllRoles(){
 		return roleService.getAllRoles();
 	}
 	
 	@RequestMapping(value="role/{id}",method=RequestMethod.GET)
-	public Role getRole(@PathVariable long id){
+	public ResponseEntity<Role> getRole(@PathVariable long id){
 		return roleService.getRole(id);
 	}
 	
 	@RequestMapping(value="role",method=RequestMethod.POST)
-	public void addRole( @RequestBody Role role){
+	public ResponseEntity<Role> addRole( @RequestBody Role role){
 		
-		roleService.saveRole(role);
+		return roleService.saveRole(role);
 		
 	}
 	
 	@PutMapping(value="role/{id}")
-	public ResponseEntity<Object> updateRole(@RequestBody Role role, @PathVariable("id") long id){
+	public ResponseEntity<Role> updateRole(@RequestBody Role role, @PathVariable("id") long id){
 		
 		return roleService.updateRole(role,id);
 		
 	}
 	
 	@RequestMapping(value="role/{id}",method=RequestMethod.DELETE)
-	public void deleteRole(@PathVariable long id){
-		roleService.deleteRole(id);
+	public ResponseEntity<Void> deleteRole(@PathVariable long id){
+		return roleService.deleteRole(id);
 		
 	}
 }

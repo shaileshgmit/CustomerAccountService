@@ -13,10 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 
 @Entity
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"userName", "password","phoneNumber"}))
 public class User {
 
 	@Id
@@ -35,6 +38,7 @@ public class User {
 	
 	@NotNull
 	private char gender;
+	//@Column(unique=true)
 	private String phoneNumber;
 	private String password;
 

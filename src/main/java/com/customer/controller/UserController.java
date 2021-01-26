@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.customer.dto.UserDto;
-import com.customer.model.User;
 import com.customer.services.UserService;
 
 @RestController
@@ -29,28 +28,27 @@ public class UserController {
     
     @PreAuthorize("hasAnyRole('Customer', 'Branch Manager')")
 	@RequestMapping(value="user",method=RequestMethod.GET)
-	public List<User> getAllUsers(){
+	public ResponseEntity<List<UserDto>> getAllUsers(){
 		return userService.getAllUsers();
 	}
 	
     @PreAuthorize("hasAnyRole('Customer', 'Branch Manager')")
 	@RequestMapping(value="user/{id}",method=RequestMethod.GET)
-	public UserDto getUser(@PathVariable long id){
-		System.out.println("Fetching User detail...");
+	public ResponseEntity<UserDto> getUser(@PathVariable long id){
 		return userService.getUser(id);
 	}
 	
 	@PreAuthorize("hasRole('Branch Manager')")
 	@RequestMapping(value="useradd",method=RequestMethod.POST)
-	public UserDto addUser( @RequestBody UserDto userDto){
+	public ResponseEntity<UserDto> addUser( @RequestBody UserDto userDto){
 		
-		return (UserDto) userService.saveUser(userDto);
+		return userService.saveUser(userDto);
 		
 	}
 	
 	@PreAuthorize("hasRole('Branch Manager')")
 	@PutMapping(value="user/{id}")
-	public UserDto updateUser(@RequestBody UserDto userDto, @PathVariable("id") long id){
+	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable("id") long id){
 		
 		return userService.updateUser(userDto,id);
 		
@@ -58,8 +56,8 @@ public class UserController {
 	
 	@PreAuthorize("hasRole('Branch Manager')")
 	@RequestMapping(value="user/{id}",method=RequestMethod.DELETE)
-	public void deleteUser(@PathVariable long id){
-		userService.deleteUser(id);
+	public ResponseEntity<Void> deleteUser(@PathVariable long id){
+		return userService.deleteUser(id);
 		
 	}
 }

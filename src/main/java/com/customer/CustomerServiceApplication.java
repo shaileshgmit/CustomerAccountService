@@ -1,19 +1,15 @@
 package com.customer;
 
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.Bean;
 
 import com.customer.model.Role;
 import com.customer.model.User;
@@ -42,6 +38,10 @@ public class CustomerServiceApplication {
     	user.setRole(role);
     	repository.save(user);
     	
+    }
+    @Bean
+    public ModelMapper getModelMapper() {
+    	return new ModelMapper();
     }
 	public static void main(String[] args) {
 		SpringApplication.run(CustomerServiceApplication.class, args);
