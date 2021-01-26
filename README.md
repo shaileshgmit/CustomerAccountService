@@ -108,3 +108,63 @@ DELETE
 URL:localhost:8082/user/2
 Header :
 Authorization:<jwtToken>
+	
+**************Role End Point*********
+
+GET(All roles)
+URL:localhost:8082/role
+Response
+[
+    {
+        "id": 1,
+        "roleName": "Branch Manager",
+        "roleCode": "002"
+    }
+]
+
+GET(to get specific role)
+URL:localhost:8082/role/1
+Response
+[
+    {
+        "id": 1,
+        "roleName": "Branch Manager",
+        "roleCode": "002"
+    }
+]
+
+POST
+URL:localhost:8082/role
+Request
+		{
+		"roleName":"Customer",
+		"roleCode":"1"
+		}
+		
+Response
+		{
+			"id": 3,
+			"roleName":"Customer",
+			"roleCode":"1"
+		}
+		
+
+PUT
+URL:localhost:8082/role/1
+Request
+		{
+		"roleName":"Customer",
+		"roleCode":"1"
+		}
+		
+Response
+		{
+			"id": 3,
+			"roleName":"Customer",
+			"roleCode":"001"
+		}
+
+DELETE
+URL:localhost:8082/role/1
+
+
